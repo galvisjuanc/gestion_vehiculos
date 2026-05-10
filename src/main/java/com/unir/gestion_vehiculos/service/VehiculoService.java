@@ -1,5 +1,6 @@
 package com.unir.gestion_vehiculos.service;
 
+import com.unir.gestion_vehiculos.dto.VehiculoDTO;
 import com.unir.gestion_vehiculos.persistence.entity.EstadoVehiculo;
 import com.unir.gestion_vehiculos.persistence.entity.Vehiculo;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,7 @@ public interface VehiculoService {
 
     List<Vehiculo> getVehiculos();
 
-    Vehiculo saveVehiculo(Vehiculo vehiculo);
+    VehiculoDTO saveVehiculo(VehiculoDTO vehiculoDTO);
 
     Optional<Vehiculo> getVehiculo(int id);
 
