@@ -46,7 +46,7 @@ public class VehiculoServiceImpl implements VehiculoService {
     }
 
     @Override
-    public Optional<Vehiculo> getVehiculo(int id) {
+    public Optional<Vehiculo> getVehiculoById(int id) {
         return repository.findById(id);
     }
 

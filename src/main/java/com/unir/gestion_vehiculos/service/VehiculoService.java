@@ -15,7 +15,7 @@ public interface VehiculoService {
 
     VehiculoDTO saveVehiculo(VehiculoDTO vehiculoDTO);
 
-    Optional<Vehiculo> getVehiculo(int id);
+    Optional<Vehiculo> getVehiculoById(int id);
 
     void deleteVehiculo(int id);
 
