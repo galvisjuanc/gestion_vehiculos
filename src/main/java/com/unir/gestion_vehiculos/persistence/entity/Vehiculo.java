@@ -3,14 +3,21 @@ package com.unir.gestion_vehiculos.persistence.entity;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "vehiculo")
 public class Vehiculo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_vehiculo", nullable = false)
     private int id;
 
+    @Column(nullable = false)
     private String marca;
+
+    @Column(nullable = false)
     private String modelo;
+
+    @Column(nullable = false, unique = true)
     private String placa;
 
     @Enumerated(EnumType.STRING)
