@@ -26,28 +26,52 @@ public class VehiculoServiceImpl implements VehiculoService {
 
     @Override
     public VehiculoDTO saveVehiculo(VehiculoDTO vehiculoDTO) {
+        return this.guardadoVehiculo(vehiculoDTO);
+    }
+
+    @Override
+    public Optional<Vehiculo> getVehiculoById(int id) {
+        return repository.findById(id);
+    }
+
+    @Override
+    public Boolean exists(int id) {
+        return this.repository.existsById(id);
+    }
+
+    @Override
+    public void updateVehiculo(Vehiculo vehiculo) {
+            repository.save(vehiculo);
+    }
+
+    public VehiculoDTO guardadoVehiculo(VehiculoDTO vehiculoDTO) {
         // 1. Convertir DTO a Entidad
+        Vehiculo entidad = convertDTOToEntity(vehiculoDTO);
+
+        // 2. Guardar en BD
+        Vehiculo savedVehiculo = repository.save(entidad);
+
+        // 3. Convertir Entidad a DTO para la respuesta
+        return convertEntityToDTO(savedVehiculo);
+    }
+
+    public Vehiculo convertDTOToEntity(VehiculoDTO vehiculoDTO) {
         Vehiculo entidad = new Vehiculo();
         entidad.setMarca(vehiculoDTO.marca());
         entidad.setModelo(vehiculoDTO.modelo());
         entidad.setPlaca(vehiculoDTO.placa());
         entidad.setEstado(EstadoVehiculo.valueOf(vehiculoDTO.estado()));
 
-        // 2. Guardar en BD
-        Vehiculo savedVehiculo = repository.save(entidad);
-
-        // 3. Convertir Entidad a DTO para la respuesta
-        return new VehiculoDTO(
-                savedVehiculo.getMarca(),
-                savedVehiculo.getModelo(),
-                savedVehiculo.getPlaca(),
-                savedVehiculo.getEstado().name()
-        );
+        return entidad;
     }
 
-    @Override
-    public Optional<Vehiculo> getVehiculoById(int id) {
-        return repository.findById(id);
+    public VehiculoDTO convertEntityToDTO(Vehiculo vehiculo){
+        return new VehiculoDTO(
+                vehiculo.getMarca(),
+                vehiculo.getModelo(),
+                vehiculo.getPlaca(),
+                vehiculo.getEstado().name()
+        );
     }
 
     @Override

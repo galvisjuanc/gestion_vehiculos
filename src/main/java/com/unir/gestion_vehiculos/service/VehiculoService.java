@@ -17,6 +17,10 @@ public interface VehiculoService {
 
     Optional<Vehiculo> getVehiculoById(int id);
 
+    Boolean exists(int id);
+
+    void updateVehiculo(Vehiculo vehiculo);
+
     void deleteVehiculo(int id);
 
     List<Vehiculo> getVehiculosByMarca(String marca);
