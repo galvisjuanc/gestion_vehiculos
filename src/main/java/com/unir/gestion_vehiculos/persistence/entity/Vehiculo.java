@@ -2,6 +2,7 @@ package com.unir.gestion_vehiculos.persistence.entity;
 
 import jakarta.persistence.*;
 
+@Entity
 public class Vehiculo {
 
     @Id
