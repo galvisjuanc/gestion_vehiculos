@@ -36,11 +36,14 @@ public class VehiculoController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<VehiculoDTO> actualizar(@PathVariable int id, @RequestBody VehiculoDTO vehiculoDTO) {
-        return vehiculoService.getVehiculoById(id)
-                .map(v -> ResponseEntity.ok(vehiculoService.saveVehiculo(vehiculoDTO)))
-                                                    .orElse(ResponseEntity.notFound().build());
+    @PutMapping
+    public ResponseEntity<Vehiculo> actualizar(@RequestBody Vehiculo vehiculo) {
+        if (Boolean.TRUE.equals(this.vehiculoService.exists(vehiculo.getId()))) {
+            this.vehiculoService.updateVehiculo(vehiculo);
+            return ResponseEntity.ok(vehiculo);
+        }
+
+        return ResponseEntity.notFound().build();
     }
 
     @DeleteMapping("/{id}")

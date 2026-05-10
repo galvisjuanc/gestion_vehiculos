@@ -17,7 +17,7 @@ public class Vehiculo {
     @Column(nullable = false)
     private String modelo;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String placa;
 
     @Enumerated(EnumType.STRING)
