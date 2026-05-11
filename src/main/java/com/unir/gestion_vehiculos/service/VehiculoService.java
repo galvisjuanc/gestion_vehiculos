@@ -19,7 +19,7 @@ public interface VehiculoService {
 
     Boolean exists(int id);
 
-    void updateVehiculo(Vehiculo vehiculo);
+    VehiculoDTO updateVehiculo(int id, VehiculoDTO vehiculoDTO);
 
     void deleteVehiculo(int id);
 
