@@ -40,8 +40,16 @@ public class VehiculoServiceImpl implements VehiculoService {
     }
 
     @Override
-    public void updateVehiculo(Vehiculo vehiculo) {
-            repository.save(vehiculo);
+    public VehiculoDTO updateVehiculo(int id, VehiculoDTO vehiculoDTO) {
+        Vehiculo vehiculoUpdated = new Vehiculo(
+                id,
+                vehiculoDTO.marca(),
+                vehiculoDTO.modelo(),
+                vehiculoDTO.placa(),
+                EstadoVehiculo.valueOf(vehiculoDTO.estado()));
+
+        repository.save(vehiculoUpdated);
+        return convertEntityToDTO(vehiculoUpdated);
     }
 
     public VehiculoDTO guardadoVehiculo(VehiculoDTO vehiculoDTO) {

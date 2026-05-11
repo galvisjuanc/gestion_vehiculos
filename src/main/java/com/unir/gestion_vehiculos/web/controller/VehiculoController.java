@@ -36,11 +36,11 @@ public class VehiculoController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @PutMapping
-    public ResponseEntity<Vehiculo> actualizar(@RequestBody Vehiculo vehiculo) {
-        if (Boolean.TRUE.equals(this.vehiculoService.exists(vehiculo.getId()))) {
-            this.vehiculoService.updateVehiculo(vehiculo);
-            return ResponseEntity.ok(vehiculo);
+    @PutMapping("/{id}")
+    public ResponseEntity<VehiculoDTO> actualizar(@PathVariable int id, @RequestBody VehiculoDTO vehiculoDTO) {
+        if (Boolean.TRUE.equals(this.vehiculoService.exists(id))) {
+            VehiculoDTO vehiculoDTOUpdated = this.vehiculoService.updateVehiculo(id, vehiculoDTO);
+            return ResponseEntity.ok(vehiculoDTOUpdated);
         }
 
         return ResponseEntity.notFound().build();
